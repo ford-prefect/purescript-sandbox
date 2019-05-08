@@ -2,7 +2,7 @@ module Main where
 
 import Prelude
 
-import Control.Monad.Aff (Aff, forkAff, launchAff_)
+import Control.Monad.Aff (Aff, launchAff_)
 import Control.Monad.Aff.Console (CONSOLE, log)
 import Control.Monad.Eff (Eff)
 import Control.Promise (Promise, toAff)
@@ -14,17 +14,23 @@ foreign import dieIf1 :: Int -> Int
 
 run :: forall e. Int -> Aff (console :: CONSOLE | e) Int
 run i = do
-  _ <- forkAff $ do
+  _ <- do
     toAff $ delays i
     let x = dieIf1 i
     log $ "doing things: " <> show i
   pure $ i + 1
 
 main :: forall e. Eff (console :: CONSOLE | e) Unit
-main = launchAff_ $
-  run 0
-  >>= run
-  >>= run
-  >>= run
-  >>= run
-  >>= run
+main = do
+  launchAff_ $
+    run 0
+    >>= run
+    >>= run
+    >>= run
+    >>= run
+  launchAff_ $
+    run 5
+    >>= run
+    >>= run
+    >>= run
+    >>= run

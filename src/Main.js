@@ -12,3 +12,11 @@ exports["dieIf1"] = function (v) {
   else
     return v;
 }
+
+process.on("uncaughtException", function(err) {
+  console.log("uce: ", err)
+});
+
+process.on("unhandledRejection", function(err) {
+  console.log("uhr: ", err)
+});
