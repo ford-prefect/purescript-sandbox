@@ -2,9 +2,9 @@ module Main where
 
 import Prelude
 
-import Control.Monad.Aff (Aff, launchAff_)
-import Control.Monad.Aff.Console (CONSOLE, log)
-import Control.Monad.Eff (Eff)
+import Effect.Aff (Aff, launchAff_)
+import Effect.Class.Console (log)
+import Effect (Effect)
 import Control.Promise (Promise, toAff)
 
 -- Sleep for n seconds
@@ -12,7 +12,7 @@ foreign import delays :: Int -> Promise Unit
 -- Throw i input is 1
 foreign import dieIf1 :: Int -> Int
 
-run :: forall e. Int -> Aff (console :: CONSOLE | e) Int
+run :: Int -> Aff Int
 run i = do
   _ <- do
     toAff $ delays i
@@ -20,7 +20,7 @@ run i = do
     log $ "doing things: " <> show i
   pure $ i + 1
 
-main :: forall e. Eff (console :: CONSOLE | e) Unit
+main :: Effect Unit
 main = do
   launchAff_ $
     run 0
