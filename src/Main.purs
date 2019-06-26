@@ -1,10 +1,13 @@
 module Main where
 
-import Aff (runAff)
+--import Aff (runAff)
+import Generic (runGeneric)
 
 import Prelude
 
 import Effect (Effect)
 
 main :: Effect Unit
-main = runAff
+main = do
+  runGeneric
+  --runAff

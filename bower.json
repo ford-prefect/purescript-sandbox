@@ -10,7 +10,11 @@
     "purescript-prelude": "^4.1.1",
     "purescript-console": "^4.2.0",
     "purescript-aff": "5.1.1",
-    "purescript-aff-promise": "^2.1.0"
+    "purescript-aff-promise": "^2.1.0",
+    "purescript-generics-rep": "^6.1.1",
+    "purescript-foreign-generic": "^10.0.0",
+    "purescript-quickcheck": "^6.1.0",
+    "purescript-clock": "^2.0.0"
   },
   "devDependencies": {
     "purescript-psci-support": "^4.0.0"
