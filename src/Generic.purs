@@ -37,7 +37,7 @@ instance encodeMyData :: Encode MyData where encode = genericEncode options
 instance arbitraryMyData :: Arbitrary MyData where arbitrary = genericArbitrary
 
 numItems :: Int
-numItems = 1000
+numItems = 5000
 
 items :: Effect (Array MyData)
 items = randomSample' numItems arbitrary
@@ -46,8 +46,12 @@ runGeneric :: Effect Unit
 runGeneric = do
   i <- items
   log "Starting"
-  e <- traverse (time "e" encode) i
-  d <- traverse (time "d" decode) e
+  -- Use this for observing times on the console
+  --e <- traverse (time encode) i
+  --d <- traverse (time decode) e
+  let e = encode <$> i
+  let d = decode <$> e
+  log "Done"
   let _ = zipWith checkItem i d
   pure unit
   where
