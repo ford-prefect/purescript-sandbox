@@ -1,5 +1,6 @@
 module Aff
-  (runAff
+  ( run
+  , runAff
   ) where
 
 import Prelude

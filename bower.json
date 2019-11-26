@@ -14,7 +14,8 @@
     "purescript-generics-rep": "^6.1.1",
     "purescript-foreign-generic": "^10.0.0",
     "purescript-quickcheck": "^6.1.0",
-    "purescript-clock": "^2.0.0"
+    "purescript-clock": "^2.0.0",
+    "purescript-spec": "^4.0.0"
   },
   "devDependencies": {
     "purescript-psci-support": "^4.0.0"
